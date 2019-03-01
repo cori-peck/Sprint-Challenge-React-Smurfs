@@ -10,6 +10,7 @@ const Smurf = props => {
           <img className="cardImg" src="https://vignette.wikia.nocookie.net/smurfs/images/0/07/Smurf_Village_Comic_Books.jpg/revision/latest?cb=20120417231142" alt="Smurf Village" />
           <strong className="cardText">{props.height} cm tall</strong>
           <p className="cardText">{props.age} smurf years old</p>
+          <img onClick={() => props.deleteSmurf(props.id)} className="delete-icon" src="https://icons-for-free.com/free-icons/png/512/186389.png" alt="delete" />
         </div>
     </div>
   );
@@ -18,7 +19,7 @@ const Smurf = props => {
 Smurf.defaultProps = {
   name: '',
   height: '',
-  age: ''
+  age: '',
 };
 
 export default Smurf;

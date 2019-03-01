@@ -24,3 +24,11 @@
     display: inline-block;
 
 }
+
+.delete-icon {
+    height: 16px;
+    width: 16px;
+    margin-top: -25px;
+    margin-right: -170px;
+    cursor: pointer;
+}
