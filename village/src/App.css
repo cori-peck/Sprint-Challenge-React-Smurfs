@@ -26,6 +26,10 @@
   color: white;
 }
 
+.navbar > li > img {
+  margin-top: -50px;
+}
+
 .SmurfForm {
   padding-top: 40px;
 }
