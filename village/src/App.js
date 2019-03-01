@@ -33,10 +33,17 @@ class App extends Component {
     return (
       <div className="App">
         <nav>
-          <div className="nav-links">
-            <NavLink to="/" exact>Village</NavLink>
-            <NavLink to="/smurf-form">Smurf Form</NavLink>
-          </div>
+          <ul className="navbar">
+            <li>
+              <NavLink to="/" exact activeClassName="activebtn">Village</NavLink>
+            </li>
+            <li>
+              <img src="https://seeklogo.com/images/S/Smurfs-logo-A3C6F8AAAF-seeklogo.com.png" alt="Smurf Logo" />
+            </li>
+            <li>
+              <NavLink to="/smurf-form" activeClassName="activebtn">Smurf Form</NavLink>
+            </li>
+          </ul>
         </nav>
         <Route path="/smurf-form" render={ props => <SmurfForm {...props} /> } />
         <Route path="/" exact render={props => <Smurfs smurfs={this.state.smurfs} {...props} />} /> 
