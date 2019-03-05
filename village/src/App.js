@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { Route, NavLink } from 'react-router-dom';
 
 import './App.css';
 import SmurfForm from './components/SmurfForm';
@@ -11,14 +13,52 @@ class App extends Component {
       smurfs: [],
     };
   }
+
+  componentDidMount() {
+      console.log("inside CDM");
+      axios
+        .get("http://localhost:3333/smurfs")
+        .then(res => {
+          this.setState({ smurfs: res.data });
+        })
+        .catch(err => {
+          console.log("CRAP!", err);
+        })
+    }
+
+   deleteSmurf = id => {
+      axios
+        .delete(`http://localhost:3333/smurfs/${id}`)
+        .then(res => {
+          this.setState({ smurfs: res.data });
+        })
+        .catch(err => {
+          console.log("WTF?!?", err);
+        })
+    }
+
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
   // You'll need to make sure you have the right properties on state and pass them down to props.
   render() {
     return (
       <div className="App">
-        <SmurfForm />
-        <Smurfs smurfs={this.state.smurfs} />
+        <nav>
+          <ul className="navbar">
+            <li>
+              <NavLink to="/" exact activeClassName="activebtn">Village</NavLink>
+            </li>
+            <li>
+              <img src="https://seeklogo.com/images/S/Smurfs-logo-A3C6F8AAAF-seeklogo.com.png" alt="Smurf Logo" />
+            </li>
+            <li>
+              <NavLink to="/smurf-form" activeClassName="activebtn">Smurf Form</NavLink>
+            </li>
+          </ul>
+        </nav>
+        <Route path="/smurf-form" render={ props => <SmurfForm {...props} /> } />
+        <Route path="/" exact render={props => <Smurfs smurfs={this.state.smurfs} {...props} 
+                                                      deleteSmurf={this.deleteSmurf} />} /> 
       </div>
     );
   }
